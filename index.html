@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <title></title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width"/>
+        <script type="text/javascript" src="scripts/jquery.min.js"></script>
+        <script type="text/javascript" src="scripts/libs/rivets/rivets.js"></script>
+        <script type="text/javascript" src="scripts/libs/underscore/underscore.js"></script>
+        <script type="text/javascript" src="scripts/libs/backbone/backbone.js"></script>
+        <script type="text/javascript" src="scripts/rivets-backbone.js"></script>
+        <style type="text/css">
+body {
+    font-size: 1.7em;
+}
+.slide {
+    display: none;
+}
+.visible {
+    display: block !important;
+}
+.bad {
+    color: red;
+}
+.good {
+    color: green;
+}
+#stats {
+    display: block;
+    width: 100%;
+}
+#content {
+    display: block;
+    width: 100%;
+}
+#timings ol {
+    display: inline-block;
+}
+#timings li {
+    font-size: 15px;
+    width: 18%;
+    float: left;
+}
+.statItem {
+    display: block;
+    float: left;
+    width: 30%;
+}
+button {
+    float: right;
+    font-size: 1.6em;
+}
+.col {
+    float: left;
+    width: 49%;
+}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div id="stats">
+                <div class="statItem">
+                    <label for="totalDuration">Durée totale</label> : <span data-text="timingModel.globalTime | toHHMMSS" id="totalDuration"></span><br/>
+                    <label for="plannedDuration">Durée prév</label> : <span data-text="timingModel:plannedSummedDuration < .plannedDuration .slideCountdown | toHHMMSS" id="plannedDuration"></span><br/>
+                </div>
+                <div class="statItem">
+                    <label for="totalOverflow">Dépassement</label> : <span data-class="timingModel:globalOverflowClass < .globalOverflow .slideCountdown" data-text="timingModel:globalSummedOverflow < .globalOverflow .slideCountdown | toHHMMSS" class="bad" id="totalOverflow"></span><br/>
+                    <label for="remainingTime">RAF</label> : <span data-text="timingModel:remainingTime < .slidesRemainingBaseTime .slideCountdown | toHHMMSS" id="remainingTime"></span>
+                </div>
+                <div class="statItem">
+                    <label for="slideCountdown">Timing slide</label> : <span data-class="timingModel:slideCountdownClass < .slideCountdown" data-text="timingModel.slideCountdown | toHHMMSS" id="slideCountdown"></span><br/>
+                    <label for="plannedEndTime">Fin prévisionnelle</label> : <span data-text="timingModel:plannedEndTime < .slidesRemainingBaseTime .slideCountdown .latestTick | dateToHHMMSS" id="plannedEndTime"></span>
+                </div>
+                <button class="nextSlide">Next</button>
+                <hr style="clear: both"/>
+                <ol data-each-timing="timings.models" id="timings">
+                    <li><span data-text="timing.duration | toHHMMSS"></span> (<span data-class="timing:deltaClass < .slideCountdown" data-text="timing.slideCountdown | toHHMMSS"></span>)</li>
+                </ol>
+                <hr style="clear: both"/>
+            </div>
+            <div id="content">
+                <div class="slide visible" data-estimatedDuration="03:00">
+                    <div >
+                        <h1>Welcome</h1>
+                        <ul>
+                            <li>Un an à faire du Typescript, partage d'XP</li>
+                            <li>Mise en place de Typescript sur projet existant => Mon quotidien depuis quelques mois sur l'un de mes projets</li>
+                            <li>3 Parties
+                                <ol>
+                                    <li>Mise en place de Typescript sur projet existant</li>
+                                    <li>Minimum vital à connaître pour faciliter votre progression</li>
+                                    <li>Migration d'une première classe JS en TS</li>
+                                </ol>
+                            </li>
+                            <li>Second workshop pour pousser plus en avant les fonctionnalités et migrer un projet Angular</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="slide" data-estimatedDuration="7:00">
+                    <div class="col">
+                        <h1>Setup</h1>
+                        <ul>
+                            <li>npm install typescript</li>
+			                <li>Explication process de compilation</li>
+			                <li>Création tsconfig</li>
+                            <li>Remplacement dans le index.html & run</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h1>Tricks</h1>
+                        <ul>
+                            <li>Live template IntelliJ "TSConfig"</li>
+                            <li>Paramétrage d'Intellij pour compilation TS</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="slide" data-estimatedDuration="18:00">
+                    <div class="col">
+                        <h1>Sandbox</h1>
+                        <ul>
+                            <li>Création fichier Sandbox.ts</li>
+                            <li>Rapide prez des Classes</li>
+                            <li>Code généré</li>
+                            <li>Rapide prez des Interfaces</li>
+                            <li>Code non généré</li>
+                            <li>Imports/Exports</li>
+                            <li>Code généré + rajout requirejs</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h1>Tricks</h1>
+                        <ul>
+                            <li>Live template IntelliJ "tshello"</li>
+			                <li>SourceMaps dans le browser</li>
+			                <li>Fonctionnement du inlineSources</li>
+                            <li>instanceof d'une classe / interface</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="slide" data-estimatedDuration="10:00">
+                    <div class="col">
+                        <h1>Typings</h1>
+                        <ul>
+                            <li>Renommage Logger.js => ts</li>
+                            <li>Désactivation du implicit any pour montrer les niveaux de compil</li>
+                            <li>Présentation du declare var de type any (workaround rapide)</li>
+                            <li>Présentation typings et fichiers .d.ts</li>
+                            <li>Installation typings de lodash</li>
+                            <li>Référence du index.d.ts dans un index.d.ts du projet</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h1>Tricks</h1>
+                        <ul>
+                            <li>typings view [package] --versions</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="slide" data-estimatedDuration="4:00">
+                    <div class="col">
+                        <h1>Fin conversion Logger</h1>
+                        <ul>
+                            <li>Ecriture d'un typings manuel</li>
+                            <li>Union types</li>
+                            <li>Paramètres optionnels</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h1>Tricks</h1>
+                        <ul>
+                            <li>Live template IntelliJ "printstacktrace"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr style="clear:both"/>
+            <button style="margin: auto" class="nextSlide">Next</button>
+            <button style="margin: auto" data-text="timingModel:pauseResumeLabel < .resumeTS" class="pauseResume"></button>
+        </div>
+        <script type="text/javascript">
+            function durationOf(minutes, seconds){
+                return minutes * 60 + seconds;
+            }
+            TimingModel = Backbone.Model.extend({
+                defaults: {
+                    globalTime: 0,
+                    globalOverflow: 0,
+                    plannedDuration: 0,
+                    slideCountdown: 0,
+
+                    currentSlide: 0,
+
+                    resumeTS: null, // == paused
+                    slidesRemainingBaseTime: 0
+                },
+
+                reset: function(){
+                    this.set({ slideCountdown: this.currentSlideTiming().estimatedDuration*1000 });
+
+                    var plannedTotalDuration = 0;
+                    for(var i=0; i<this.get("slideTimings").length; i++){
+                        plannedTotalDuration += this.get("slideTimings")[i].estimatedDuration * 1000;
+                    }
+                    this.set({
+                        plannedDuration: plannedTotalDuration,
+                        slidesRemainingBaseTime: plannedTotalDuration
+                    });
+                },
+
+                resume: function(){
+                    this.set({ resumeTS: new Date() });
+                },
+
+                pause: function(){
+                    this.update();
+                    this.set({ resumeTS: null });
+                },
+
+                resumeOrPause: function(){
+                    if(!this.get("resumeTS")){ this.resume(); }
+                    else { this.pause(); }
+                },
+
+                remainingTime: function(){
+                    return this.get("slidesRemainingBaseTime")
+                            - ((this.currentSlideTiming().estimatedDuration*1000) - (this.get("slideCountdown")>0?this.get("slideCountdown"):0));
+                },
+
+                plannedEndTime: function(){
+                    return this.get("latestTick") + this.remainingTime();
+                },
+
+                pauseResumeLabel: function(){
+                    return this.get("resumeTS")?"Pause":"Resume";
+                },
+
+                globalOverflowClass: function(){
+                    return this.globalSummedOverflow() < 0?"bad":"good";
+                },
+
+                globalSummedOverflow: function(){
+                    return this.get("globalOverflow") + (this.get("slideCountdown")<0?this.get("slideCountdown"):0);
+                },
+
+                plannedSummedDuration: function(){
+                    return this.get("plannedDuration") - (this.get("slideCountdown")<0?this.get("slideCountdown"):0);
+                },
+
+                slideCountdownClass: function(){
+                    return this.get("slideCountdown") < 0?"bad":"";
+                },
+
+                update: function(){
+                    this.set({ latestTick: new Date().getTime() });
+                    if(!this.get("resumeTS")){
+                        return;
+                    }
+
+                    var newTS = new Date();
+                    var delta = newTS.getTime() - this.get("resumeTS").getTime();
+                    this.set({ resumeTS: newTS });
+
+                    this.set({
+                        globalTime: this.get("globalTime") + delta,
+                        slideCountdown: this.get("slideCountdown") - delta
+                    });
+                },
+
+                nextSlide: function(){
+                    this.currentSlideTiming().realDuration = this.currentSlideTiming().estimatedDuration * 1000 - this.get("slideCountdown");
+                    this.currentSlideTiming().delta = Math.round(this.get("slideCountdown") / 1000);
+
+                    window.timingsModel.add({
+                        duration: this.currentSlideTiming().realDuration,
+                        slideCountdown: this.get("slideCountdown")
+                    });
+
+                    this.set({
+                        globalOverflow: this.get("globalOverflow") + this.get("slideCountdown"),
+                        currentSlide: this.get("currentSlide")+1,
+                        plannedDuration: this.get("plannedDuration") - this.get("slideCountdown"),
+                        slidesRemainingBaseTime: this.get("slidesRemainingBaseTime") - (this.currentSlideTiming().estimatedDuration * 1000)
+                    });
+                    this.set({
+                        slideCountdown: this.currentSlideTiming().estimatedDuration * 1000
+                    })
+                },
+
+                currentSlideTiming: function(){ return this.get("slideTimings")[this.get("currentSlide")]; }
+            });
+
+            TimingsCollection = Backbone.Collection.extend({
+                model: Backbone.Model.extend({
+                    deltaClass: function(){
+                        return this.get("slideCountdown")>0?"good":"bad";
+                    }
+                })
+            });
+
+            $(document).ready(function(){
+                SLIDE_TIMINGS = $(".slide").map(function(idx, $slideEl){
+                    var rawDuration = $($slideEl).attr('data-estimatedDuration');
+                    var durationChunks = rawDuration.split(":");
+                    return { estimatedDuration: durationOf(Number(durationChunks[0]), Number(durationChunks[1])) };
+                });
+
+                function dateToHHMMSS(timestamp){
+                    // Having to pass through a date object to convert to non utc time
+                    var time = new Date(timestamp);
+                    return toHHMMSS((time.getSeconds() + (time.getMinutes() * 60) + (time.getHours() * 60 * 60))*1000);
+                }
+
+                function toHHMMSS(timestamp){
+                    var sec_numb = Math.round(timestamp/1000);
+                    var sign="";
+                    if(sec_numb < 0){
+                        sign="-";
+                        sec_numb *= -1;
+                    }
+                    var hours   = Math.floor(sec_numb / 3600);
+                    var minutes = Math.floor((sec_numb - (hours * 3600)) / 60);
+                    var seconds = sec_numb - (hours * 3600) - (minutes * 60);
+
+                    if (hours   < 10) {hours   = "0"+hours;}
+                    if (minutes < 10) {minutes = "0"+minutes;}
+                    if (seconds < 10) {seconds = "0"+seconds;}
+                    var time    = sign+hours+':'+minutes+':'+seconds;
+                    return time;
+                }
+
+                window.timingModel = new TimingModel({ slideTimings: SLIDE_TIMINGS });
+                window.timingsModel = new TimingsCollection();
+
+                rivets.formatters.toHHMMSS = toHHMMSS;
+                rivets.formatters.dateToHHMMSS = dateToHHMMSS;
+                rivets.bind($(".container"), { timingModel: window.timingModel, timings: timingsModel });
+                window.timingModel.reset();
+
+                // Here, you can specify refresh rate...
+                setInterval(_.bind(timingModel.update, timingModel), 1000);
+
+                $(".pauseResume").click(function(){
+                    timingModel.resumeOrPause();
+                });
+
+                $(".nextSlide").click(function(){
+                    var visibleSlide = $(".slide.visible");
+                    visibleSlide.removeClass("visible");
+
+                    window.timingModel.nextSlide();
+
+                    visibleSlide.next().addClass("visible");
+                });
+            });
+        </script>
+    </body>
+</html>
