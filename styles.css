@@ -1,0 +1,44 @@
+body {
+    font-size: 1.7em;
+}
+.slide {
+    display: none;
+}
+.visible {
+    display: block !important;
+}
+.bad {
+    color: red;
+}
+.good {
+    color: green;
+}
+#stats {
+    display: block;
+    width: 100%;
+}
+#content {
+    display: block;
+    width: 100%;
+}
+#timings ol {
+    display: inline-block;
+}
+#timings li {
+    font-size: 15px;
+    width: 18%;
+    float: left;
+}
+.statItem {
+    display: block;
+    float: left;
+    width: 30%;
+}
+button {
+    float: right;
+    font-size: 1.6em;
+}
+.col {
+    float: left;
+    width: 49%;
+}
