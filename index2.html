@@ -40,7 +40,7 @@
             </div>
             <div id="content">
                 <div class="slide visible" data-estimatedDuration="03:00">
-                    <div >
+                    <div class="col">
                         <h1>Recap</h1>
                         <ul>
                             <li>Récap de ce qu'on a fait la dernière fois<br/>
@@ -53,15 +53,21 @@
                             </li>
                         </ul>
                     </div>
+                    <div class="col">
+                        <h1>Tricks</h1>
+                        <ul>
+                            <li>Inspiration venant du site BDX I/O en angular 1 + TS</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="slide" data-estimatedDuration="8:00">
+                <div class="slide" data-estimatedDuration="10:00">
                     <div class="col">
                         <h1>Refacto classe Logger</h1>
                         <ul>
                             <li>Classe avec méthodes public static</li>
-			                <li>registeredObservers en private static</li>
-			                <li>Type LogEvent qui ressemble a un enum</li>
                             <li>Interfaces LogEventCallbackStdParam / LogEventCallbackUserParam</li>
+                            <li>Type LogEvent qui ressemble a un enum</li>
+                            <li>registeredObservers en private static</li>
                             <li>LogEventObserver qui est une Map</li>
                             <li>Externalisation de la classe Logger pour faciliter son export futur</li>
                         </ul>
@@ -69,12 +75,14 @@
                     <div class="col">
                         <h1>Tricks</h1>
                         <ul>
+                            <li>Petit focus sur les enums qui sont vraiment pourris en TS</li>
+                            <li>let est mieux que var</li>
                         </ul>
                     </div>
                 </div>
                 <div class="slide" data-estimatedDuration="20:00">
                     <div class="col">
-                        <h1>Migration Typescript d'un controller</h1>
+                        <h1>NG-Controller en TS</h1>
                         <ul>
                             <li>Controller en tant que classe</li>
                             <li>Injection de dépendances via public static $inject</li>
@@ -86,16 +94,17 @@
                         <h1>Tricks</h1>
                         <ul>
                             <li>Le controller peut implémenter ng.IController</li>
-			                <li>Le component peut implémenter ng.IDirective</li>
 			                <li>$http peut être défini via un IHttpService</li>
+			                <li>Fat arrows ne redéfinissent pas this, super, arguments et target.new</li>
                             <li>Attention au duck typing sur les types</li>
-                            <li>Petit focus sur les enums qui sont vraiment pourris en TS</li>
+                            <li>Le component peut implémenter ng.IDirective</li>
+                            <li>Attention à l'init par défaut des champs : se fait après l'appel à super !</li>
                         </ul>
                     </div>
                 </div>
-                <div class="slide" data-estimatedDuration="12:00">
+                <div class="slide" data-estimatedDuration="10:00">
                     <div class="col">
-                        <h1>Problématique de l'import des modules</h1>
+                        <h1>Import des modules</h1>
                         <ul>
                             <li>Tenter un export/import de la classe Logger pour appel en statique</li>
                             <li>Problème entre require/define et angular.module()</li>
@@ -112,7 +121,7 @@
                 </div>
                 <div class="slide" data-estimatedDuration="7:00">
                     <div class="col">
-                        <h1>Refacto WorkshopVoteResultsPage</h1>
+                        <h1>WorkshopVoteResultsPage</h1>
                         <ul>
                             <li></li>
                             <li></li>
