@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <title></title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width"/>
+        <script type="text/javascript" src="scripts/jquery.min.js"></script>
+        <script type="text/javascript" src="scripts/libs/rivets/rivets.js"></script>
+        <script type="text/javascript" src="scripts/libs/underscore/underscore.js"></script>
+        <script type="text/javascript" src="scripts/libs/backbone/backbone.js"></script>
+        <script type="text/javascript" src="scripts/rivets-backbone.js"></script>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div id="stats">
+                <div class="statItem">
+                    <label for="totalDuration">Durée totale</label> : <span data-text="timingModel.globalTime | toHHMMSS" id="totalDuration"></span><br/>
+                    <label for="plannedDuration">Durée prév</label> : <span data-text="timingModel:plannedSummedDuration < .plannedDuration .slideCountdown | toHHMMSS" id="plannedDuration"></span><br/>
+                </div>
+                <div class="statItem">
+                    <label for="totalOverflow">Dépassement</label> : <span data-class="timingModel:globalOverflowClass < .globalOverflow .slideCountdown" data-text="timingModel:globalSummedOverflow < .globalOverflow .slideCountdown | toHHMMSS" class="bad" id="totalOverflow"></span><br/>
+                    <label for="remainingTime">RAF</label> : <span data-text="timingModel:remainingTime < .slidesRemainingBaseTime .slideCountdown | toHHMMSS" id="remainingTime"></span>
+                </div>
+                <div class="statItem">
+                    <label for="slideCountdown">Timing slide</label> : <span data-class="timingModel:slideCountdownClass < .slideCountdown" data-text="timingModel.slideCountdown | toHHMMSS" id="slideCountdown"></span><br/>
+                    <label for="plannedEndTime">Fin prévisionnelle</label> : <span data-text="timingModel:plannedEndTime < .slidesRemainingBaseTime .slideCountdown .latestTick | dateToHHMMSS" id="plannedEndTime"></span>
+                </div>
+                <button class="nextSlide">Next</button>
+                <hr style="clear: both"/>
+                <ol data-each-timing="timings.models" id="timings">
+                    <li><span data-text="timing.duration | toHHMMSS"></span> (<span data-class="timing:deltaClass < .slideCountdown" data-text="timing.slideCountdown | toHHMMSS"></span>)</li>
+                </ol>
+                <hr style="clear: both"/>
+            </div>
+            <div id="content">
+                <div class="slide visible" data-estimatedDuration="04:00">
+                    <div class="col">
+                        <h1>Welcome</h1>
+                        <ul>
+                            <li>
+                                Bonjour à tous, je m'appelle Frédéric Camblor, et je travaille le jour pour une petite ESN Bordelaise qui s'appelle 4SH
+                            </li>
+                            <li>... et puis durant mes nuits, j'ai eu l'occasion de collaborer à la création d'une conférence de développeur sur Bordeaux : BDX I/O</li>
+                            <li>C'est de cette expérience dont est tirée le REX dont je vais vous parler pendant ce TIA, et qui vise à pousser un peu plus loin l'utilisation qu'on peut avoir des Spreadsheets Google</li>
+                            <li>En effet, la conférence est organisée par des bénévoles, plutôt le soir : on n'a dont pas un temps extensible si on veut profiter de notre famille</li>
+                            <li>Affichage du site et de sa Spreadsheet Google</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h1>Tricks</h1>
+                        <ul>
+                            <li>
+                                En gros les contraintes :
+                                <ul>
+                                    <li>Aller au plus court</li>
+                                    <li>Eviter d'avoir une infra à gérer</li>
+                                    <li>Minimiser le code produit (source de bugs)</li>
+                                    <li>Permettre de partager des données entre plusieurs "contributeurs" (orgas/speakers)</li>
+                                    <li>Pas de gros volumes, peu de choses à cacher</li>
+                                </ul>
+                            </li>
+                            <li>L'URL que vous voyez là (et qui sera peut-être sur Youtube) ne vous donne accès au document qu'en read only ;-)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="slide" data-estimatedDuration="5:00">
+                    <div class="col">
+                        <h1>Fonctionnalités de base</h1>
+                        <ul>
+                            <li>Création d'une nouvelle Spreadsheet</li>
+			                <li>Publication de cette dernière</li>
+			                <li>Récupération des données en JSON + affichage dans JSONLint</li>
+                            <li>Parler de SpreadsheetReader ??? :)</li>
+                            <li>Visualisation de l'historique des modifications</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h1>Tricks</h1>
+                        <ul>
+                            <li>bit.ly/<strong>gs-json-url</strong></li>
+                            <li>Lorsqu'on a une formule, c'est bien le résultat qui est exporté</li>
+                            <li>Feature importante : coloration conditionnelle, utilisation du $ dans les formules</li>
+                            <li>Features gadget : coloriser un onglet, formule SPARLINE (graphe dans une cellule) SPARKLINE(A2:C2;{"charttype"\"bar"})</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="slide" data-estimatedDuration="4:00">
+                    <div class="col">
+                        <h1>Alimentation de la Spreadsheet</h1>
+                        <ul>
+                            <li>Formule IMPORTRANGE</li>
+                            <li>Alimentation à partir d'un Google Form</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h1>Tricks</h1>
+                        <ul>
+                            <li>Donner accès à une zone via Tools > Protect Spreadsheet (ex: Spreadsheet traduction)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="slide" data-estimatedDuration="08:30">
+                    <div class="col">
+                        <h1>Editeur de Scripts</h1>
+                        <ul>
+                            <li>Exécution d'une fonction custom (ex: DOUBLE qui fait x2)</li>
+                            <li>Créer un menu déroulant custom sur l'évènement onOpen</li>
+                            <li>Ouverture d'une popup sur clic de l'élément dans le menu déroulant</li>
+                            <li>Manipulation de la spreadsheet (alimentation de cellules)</li>
+                            <li>Debug lors de l'exécution</li>
+                            <li>Possibilité de charger des libs externes telles que lodash</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h1>Tricks</h1>
+                        <ul>
+                            <li>Scripts utiles (underscoreGS) : bit.ly/gs-libs</li>
+                            <li>
+                                <pre>
+function onOpen() {
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+
+  spreadsheet.addMenu("Util", [{
+    name : "Say Hello world !",
+    functionName : "sayHelloWorld"
+  }]);
+};
+                                </pre>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="slide" data-estimatedDuration="6:00">
+                    <div class="col">
+                        <h1>Scripting avancé</h1>
+                        <ul>
+                            <li>Publication de ses fonctions sous forme de endpoint (fonction doGet) après publication WEB</li>
+                            <li>Créer une popup de saisie et récupération des informations de la popup sur validation</li>
+                            <li>Guidelines CSS : bit.ly/gs-css</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h1>Possibilités</h1>
+                        <ul>
+                            <li>
+                                <pre>
+function doGet(request){
+  // return HtmlService.createHtmlOutput("Hello <strong>world</strong> ("+request.parameter.foo+")");
+  var template = HtmlService.createTemplateFromFile("myTemplate");
+  template.foo = request.parameter.foo;
+  return template.evaluate();
+}
+Hello <strong>world</strong> (<?= foo ?>)
+                                </pre>
+                            </li>
+                            <li>Appels AJAX</li>
+                            <li>Accès en lecture au contenu d'une autre Spreadsheet</li>
+                            <li>Templating HTML basé sur un langage JSP/PHP-like</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr style="clear:both"/>
+            <button style="margin: auto" class="nextSlide">Next</button>
+            <button style="margin: auto" data-text="timingModel:pauseResumeLabel < .resumeTS" class="pauseResume"></button>
+        </div>
+        <script type="text/javascript" src="TimingManager.js"></script>
+        <script type="text/javascript">
+            $(document).ready(bootstrapTimings);
+        </script>
+    </body>
+</html>
