@@ -41,19 +41,14 @@
             </div>
             <div id="content">
                 <div class="slide visible" data-estimatedDuration="03:00">
-                    <div class="col">
-                        <h1>Welcome</h1>
+                    <div>
+                        <h1>Amorce</h1>
                         <ul>
-                            <li>Amorce : 
-                                <ul>
-                                    <li>Plus d'un an que je fais du Typescript plus ou moins au quotidien</li>
-                                    <li>Volonté de partager mon expérience, plus particulièrement la mise en place de Typescript sur un projet existant.</li>
-                                    <li>Je fais cet exercice sur un projet 4SH depuis maintenant plus de 6 mois : ça se passe plutôt pas mal et cela apporte énormément de "meta-information" / documentation sur le front.</li>
-                                </ul>
-                            </li>
+                            <li><strong>Plus d'un an</strong> que je fais du Typescript au quotidien</li>
+                            <li><strong>Partager mon expérience</strong> sur la mise en place de TS sur un projet existant.</li>
+                            <li><strong>REX</strong> projet 4SH > 6 mois : ça se passe bien et cela apporte énormément de "<strong>meta-information</strong>" / doc sur le front.</li>
                         </ul>
-                    </div>
-                    <div class="col">
+
                         <h1>4 Parties</h1>
                         <ol>
                             <li>Mise en place de Typescript sur projet existant</li>
@@ -67,16 +62,16 @@
                     <div class="col">
                         <h1>Setup</h1>
                         <ul>
-                            <li>yarn add --dev typescript</li>
-			                <li>Explication process de compilation</li>
-			                <li>Création tsconfig</li>
-                            <li>Remplacement dans le index.html & run</li>
+                            <li>npm install --save-dev typescript</li>
+			                <li>Création <strong>tsconfig</strong></li>
+                            <li>Explication <strong>process de compilation</strong></li>
+                            <li><strong>Remplacement dans le index.html</strong> & run</li>
                         </ul>
                     </div>
                     <div class="col">
                         <h1>Tricks</h1>
                         <ul>
-                            <li>Live template "TSConfig" ou "tsconfigcontent"</li>
+                            <li>Live template "<strong>TSConfig</strong>" ou "tsconfigcontent"</li>
                             <li>Paramétrage d'Intellij pour compilation TS</li>
                         </ul>
                     </div>
@@ -85,21 +80,21 @@
                     <div class="col">
                         <h1>Sandbox</h1>
                         <ul>
-                            <li>Création fichier Sandbox.ts</li>
+                            <li>Création <strong>fichier Sandbox.ts</strong></li>
                             <li>Rapide prez des <strong>Classes</strong></li>
                             <li>Code généré</li>
-                            <li>Rapide prez des Interfaces</li>
+                            <li>Rapide prez des <strong>Interfaces</strong></li>
                             <li>Code non généré</li>
-                            <li>Imports/Exports</li>
-                            <li>Code généré + rajout requirejs à la fin</li>
+                            <li><strong>Imports/Exports</strong></li>
+                            <li>Code généré + <strong>rajout requirejs</strong> à la fin</li>
                         </ul>
                     </div>
                     <div class="col">
                         <h1>Tricks</h1>
                         <ul>
-                            <li>Live template "tshello"</li>
-                            <li>"Espaces" de déclaration : variables et types. Parallèle avec Classes & interfaces.</li>
-			                <li>SourceMaps dans le browser</li>
+                            <li>Live template "<strong>tshello</strong>"</li>
+                            <li><strong>"Espaces" de déclaration</strong> : variables et types. Parallèle avec Classes & interfaces.</li>
+			                <li><strong>SourceMaps</strong> dans le browser</li>
 			                <li>Fonctionnement du inlineSources</li>
                             <li>instanceof d'une classe / interface</li>
                         </ul>
@@ -109,19 +104,19 @@
                     <div class="col">
                         <h1>Interop</h1>
                         <ul>
-                            <li>Renommage Logger.js => ts. Migrer les feuilles dans l'arbre de dépendances.</li>
+                            <li>Renommage WorkshopLogger.js => <strong>ts</strong>. Migrer les feuilles dans l'arbre de dépendances.</li>
                             <li>Désactivation du implicit any pour montrer les niveaux de compil</li>
-                            <li>Présentation du declare var de type any (workaround rapide)</li>
-                            <li>Présentation fichiers .d.ts & @types</li>
-                            <li>Installation @types : yarn add @types/lodash@3.10.1 @types/handlebars@4.0.29 @types/angular@1.5.8</li>
-                            <li>Ecriture d'un typings manuel pour stacktrace-js</li>
+                            <li>Présentation du <strong>declare var de type any</strong> (workaround rapide)</li>
+                            <li>Présentation <strong>fichiers .d.ts & @types</strong></li>
+                            <li><strong>Installation</strong> @types : npm install --save @types/lodash@3.10.1 @types/handlebars@4.0.29 @types/angular@1.5.8</li>
+                            <li>Ecriture d'un <strong>typings manuel</strong> pour stacktrace-js</li>
                         </ul>
                     </div>
                     <div class="col">
                         <h1>Tricks</h1>
                         <ul>
-                            <li>Rechercher un @type : http://aka.ms/types</li>
-                            <li>Lister les versions d'un d.ts : npm show @types/handlebars</li>
+                            <li>Rechercher un @type : <strong>http://aka.ms/types</strong></li>
+                            <li>Lister les versions d'un d.ts : <strong>npm show @types/handlebars</strong></li>
                             <li>Live template IntelliJ "printstacktrace"</li>
                         </ul>
                     </div>
@@ -130,19 +125,18 @@
                     <div class="col">
                         <h1>Fin refacto Logger</h1>
                         <ul>
-                            <li>Classe avec méthodes public static</li>
-                            <li>Interfaces LogEventCallbackStdParam / LogEventCallbackUserParam</li>
-                            <li>Type LogEvent qui ressemble a un enum</li>
-                            <li>registeredObservers en private static</li>
-                            <li>LogEventObserver qui est une Map</li>
-                            <li>Externalisation de la classe Logger pour faciliter son export futur</li>
+                            <li>Classe avec <strong>méthodes public static</strong></li>
+                            <li><strong>Interfaces</strong> LogEventCallbackStd|UserParam</li>
+                            <li>Type LogEvent qui ressemble a un <strong>enum</strong></li>
+                            <li><strong>LogEventObserver</strong> qui est un object literal</li>
+                            <li><strong>Externalisation</strong> de la classe Logger pour faciliter son export futur</li>
                         </ul>
                     </div>
                     <div class="col">
                         <h1>Tricks</h1>
                         <ul>
                             <li>Petit focus sur les enums qui sont vraiment pourris en TS</li>
-                            <li>let est mieux que var</li>
+                            <li><strong>let</strong> est mieux que var</li>
                         </ul>
                     </div>
                 </div>
@@ -150,31 +144,30 @@
                     <div class="col">
                         <h1>NG-Controller en TS</h1>
                         <ul>
-                            <li>Controller en tant que classe</li>
-                            <li>Injection de dépendances via public static $inject</li>
-                            <li>Possibilité de colocaliser le template avec le controller</li>
+                            <li><strong>Classe controller</strong></li>
+                            <li>Injection de dépendances via <strong>public static $inject</strong></li>
+                            <li>Possibilité de <strong>colocaliser le template</strong> avec le controller</li>
                         </ul>
                     </div>
                     <div class="col">
                         <h1>Tricks</h1>
                         <ul>
-			                <li>Fat arrows ne redéfinissent pas this, super, arguments et target.new</li>
+			                <li><strong>Fat arrows ne redéfinissent pas</strong> this, super, arguments et target.new</li>
                         </ul>
                     </div>
                 </div>
                 <div class="slide" data-estimatedDuration="15:00">
                     <div class="col">
-                        <h1>Export du logger</h1>
+                        <h1>Export d'un module angular</h1>
                         <ul>
-                            <li>Export de WorkshopLogger : nécessite de clarifier l'usage de requirejs, pb gestion require/angular.module</li>
+                            <li>Export d'une constante : nécessite de clarifier l'usage de requirejs, pb gestion require/angular.module</li>
                             <li>
                                 Etapes :
                                 <ul>
-                                    <li>Création d'une constante angular dans un fichier à part, objectif : le charger</li>
-                                    <li>Réorga de requirejs dans le index.html => changement du comportement de certaines libs (angular-ui-router par ex)</li>
-                                    <li>Suppression ng-app + déclaration modules pour angular / ui-router</li>
-                                    <li>Import de la constante dans le main</li>
-                                    <li>Migration de tous les controllers en TS + déclaration de chacun d'eux dans le app.ts</li>
+                                    <li><strong>Chargement de requirejs au plus tôt</strong> dans index.html => changement du comportement de certaines libs (angular-ui-router par ex)</li>
+                                    <li><strong>Suppression ng-app</strong> + déclaration modules pour angular / ui-router</li>
+                                    <li><strong>Import</strong> de la constante dans le main</li>
+                                    <li><strong>Migration de tous les composants</strong> angular en TS + déclaration de chacun d'eux dans le app.ts</li>
                                 </ul>
                             </li>
                             <li>Remplacer le logger injecté via angular par l'appel static à la classe WorkshopLogger</li>
@@ -183,7 +176,7 @@
                     <div class="col">
                         <h1>Tricks</h1>
                         <ul>
-                            <li>Live template "angularrequire"</li>
+                            <li>Live template "<strong>angularrequire</strong>"</li>
                             <li>Re-lancer la compil typescript dans Intellij pour tout bien prendre en compte</li>
                             <li>Le controller peut implémenter ng.IController</li>
                             <li>$http peut être défini via un IHttpService</li>
@@ -196,7 +189,6 @@
                         <h1>La fin</h1>
                         <ul>
                             <li>Parler du google group Typescript-</li>
-                            <li></li>
                         </ul>
                     </div>
                     <div class="col">
