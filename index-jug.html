@@ -32,6 +32,7 @@
                     <label for="plannedEndTime">Fin prévisionnelle</label> : <span data-text="timingModel:plannedEndTime < .slidesRemainingBaseTime .slideCountdown .latestTick | dateToHHMMSS" id="plannedEndTime"></span>
                 </div>
                 <button class="nextSlide">Next</button>
+                <button style="margin: auto" data-text="timingModel:pauseResumeLabel < .resumeTS" class="pauseResume"></button>
                 <hr style="clear: both"/>
                 <ol data-each-timing="timings.models" id="timings">
                     <li><span data-text="timing.duration | toHHMMSS"></span> (<span data-class="timing:deltaClass < .slideCountdown" data-text="timing.slideCountdown | toHHMMSS"></span>)</li>
@@ -62,7 +63,7 @@
                         </ol>
                     </div>
                 </div>
-                <div class="slide" data-estimatedDuration="7:00">
+                <div class="slide" data-estimatedDuration="9:30">
                     <div class="col">
                         <h1>Setup</h1>
                         <ul>
@@ -75,22 +76,22 @@
                     <div class="col">
                         <h1>Tricks</h1>
                         <ul>
-                            <li>Live template "TSConfig"</li>
+                            <li>Live template "TSConfig" ou "tsconfigcontent"</li>
                             <li>Paramétrage d'Intellij pour compilation TS</li>
                         </ul>
                     </div>
                 </div>
-                <div class="slide" data-estimatedDuration="18:00">
+                <div class="slide" data-estimatedDuration="16:00">
                     <div class="col">
                         <h1>Sandbox</h1>
                         <ul>
                             <li>Création fichier Sandbox.ts</li>
-                            <li>Rapide prez des Classes</li>
+                            <li>Rapide prez des <strong>Classes</strong></li>
                             <li>Code généré</li>
                             <li>Rapide prez des Interfaces</li>
                             <li>Code non généré</li>
                             <li>Imports/Exports</li>
-                            <li>Code généré + rajout requirejs</li>
+                            <li>Code généré + rajout requirejs à la fin</li>
                         </ul>
                     </div>
                     <div class="col">
@@ -104,7 +105,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="slide" data-estimatedDuration="10:00">
+                <div class="slide" data-estimatedDuration="15:00">
                     <div class="col">
                         <h1>Interop</h1>
                         <ul>
@@ -113,21 +114,22 @@
                             <li>Présentation du declare var de type any (workaround rapide)</li>
                             <li>Présentation fichiers .d.ts & @types</li>
                             <li>Installation @types : yarn add @types/lodash@3.10.1 @types/handlebars@4.0.29 @types/angular@1.5.8</li>
+                            <li>Ecriture d'un typings manuel pour stacktrace-js</li>
                         </ul>
                     </div>
                     <div class="col">
                         <h1>Tricks</h1>
                         <ul>
                             <li>Rechercher un @type : http://aka.ms/types</li>
-                            <li>Lister les versions d'un paquet : npm show @types/handlebars</li>
+                            <li>Lister les versions d'un d.ts : npm show @types/handlebars</li>
+                            <li>Live template IntelliJ "printstacktrace"</li>
                         </ul>
                     </div>
                 </div>
-                <div class="slide" data-estimatedDuration="14:00">
+                <div class="slide" data-estimatedDuration="20:00">
                     <div class="col">
                         <h1>Fin refacto Logger</h1>
                         <ul>
-                            <li>Ecriture d'un typings manuel pour stacktrace-js</li>
                             <li>Classe avec méthodes public static</li>
                             <li>Interfaces LogEventCallbackStdParam / LogEventCallbackUserParam</li>
                             <li>Type LogEvent qui ressemble a un enum</li>
@@ -139,40 +141,39 @@
                     <div class="col">
                         <h1>Tricks</h1>
                         <ul>
-                            <li>Live template IntelliJ "printstacktrace"</li>
                             <li>Petit focus sur les enums qui sont vraiment pourris en TS</li>
                             <li>let est mieux que var</li>
                         </ul>
                     </div>
                 </div>
-                <div class="slide" data-estimatedDuration="20:00">
+                <div class="slide" data-estimatedDuration="10:00">
                     <div class="col">
                         <h1>NG-Controller en TS</h1>
                         <ul>
                             <li>Controller en tant que classe</li>
                             <li>Injection de dépendances via public static $inject</li>
                             <li>Possibilité de colocaliser le template avec le controller</li>
-                            <li>Possibilité de spécifier la structure des données manipulées</li>
                         </ul>
                     </div>
                     <div class="col">
                         <h1>Tricks</h1>
                         <ul>
 			                <li>Fat arrows ne redéfinissent pas this, super, arguments et target.new</li>
-                            <li>Attention au duck typing sur les types</li>
                         </ul>
                     </div>
                 </div>
-                <div class="slide" data-estimatedDuration="10:00">
+                <div class="slide" data-estimatedDuration="15:00">
                     <div class="col">
-                        <h1>Import des modules</h1>
+                        <h1>Export du logger</h1>
                         <ul>
-                            <li>Import / Export nécessite mise en place de requirejs, pb gestion require/angular.module</li>
+                            <li>Export de WorkshopLogger : nécessite de clarifier l'usage de requirejs, pb gestion require/angular.module</li>
                             <li>
                                 Etapes :
                                 <ul>
-                                    <li>Intégration de requirejs dans le index.html => changement du comportement de certaines libs (angular-ui-router par ex)</li>
+                                    <li>Création d'une constante angular dans un fichier à part, objectif : le charger</li>
+                                    <li>Réorga de requirejs dans le index.html => changement du comportement de certaines libs (angular-ui-router par ex)</li>
                                     <li>Suppression ng-app + déclaration modules pour angular / ui-router</li>
+                                    <li>Import de la constante dans le main</li>
                                     <li>Migration de tous les controllers en TS + déclaration de chacun d'eux dans le app.ts</li>
                                 </ul>
                             </li>
@@ -190,27 +191,11 @@
                         </ul>
                     </div>
                 </div>
-                <div class="slide" data-estimatedDuration="7:00">
-                    <div class="col">
-                        <h1>WorkshopVoteResultsPage -- FACULTATIF</h1>
-                        <ul>
-                            <li></li>
-                            <li></li>
-                            <li>Paramètres optionnels</li>
-                        </ul>
-                    </div>
-                    <div class="col">
-                        <h1>Tricks</h1>
-                        <ul>
-                            <li>Le _.extend n'était finalement pas très utile</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="slide" data-estimatedDuration="1:00">
+                <div class="slide" data-estimatedDuration="1:30">
                     <div class="col">
                         <h1>La fin</h1>
                         <ul>
-                            <li>Parler du google group Typescript-fr</li>
+                            <li>Parler du google group Typescript-</li>
                             <li></li>
                         </ul>
                     </div>

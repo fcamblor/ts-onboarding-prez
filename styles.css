@@ -16,6 +16,7 @@ body {
 #stats {
     display: block;
     width: 100%;
+    font-size: 1.5em;
 }
 #content {
     display: block;
