@@ -159,26 +159,20 @@
                 </div>
                 <div class="slide" data-estimatedDuration="15:00">
                     <div class="col">
-                        <h1>Export d'un module angular</h1>
+                        <h1>Export d'un module</h1>
                         <ul>
-                            <li>Export d'une constante : nécessite de clarifier l'usage de requirejs, pb gestion require/angular.module</li>
-                            <li>
-                                Etapes :
-                                <ul>
-                                    <li>Déclaration <strong>module pour angular</strong></li>
-                                    <li><strong>Import</strong> de la constante dans le app.ts</li>
-                                    <li><strong>Suppression ng-app</strong></li>
-                                    <li><strong>Migration de tous les composants</strong> angular en TS + déclaration de chacun d'eux dans le app.ts</li>
-                                </ul>
-                            </li>
-                            <li>Remplacer le logger injecté via angular par l'appel static à la classe WorkshopLogger</li>
+                            <li><strong>Exporter la version</strong> et commenter l'injection dans app.js</li>
+                            <li>Dans console : <pre>require(['utils/Version'], function(){ console.log("Version loaded"); })</pre></li>
+                            <li>Déclaration <strong>module pour angular</strong></li>
+                            <li><strong>Migration app.js</strong> => app.ts + <strong>Import</strong> de la constante</li>
+                            <li><strong>Suppression ng-app</strong> + <strong>Migration de tous les composants</strong> angular en TS + déclaration de chacun d'eux dans le app.ts</li>
+                            <li>Remplacer logger injecté via angular par l'appel static à la classe WorkshopLogger</li>
                         </ul>
                     </div>
                     <div class="col">
                         <h1>Tricks</h1>
                         <ul>
                             <li>Live template "<strong>angularrequire</strong>"</li>
-                            <li>Re-lancer la compil typescript dans Intellij pour tout bien prendre en compte</li>
                             <li>Le controller peut implémenter ng.IController</li>
                             <li>$http peut être défini via un IHttpService</li>
                             <li>Le component peut implémenter ng.IDirective</li>
