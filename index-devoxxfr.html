@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <title></title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width"/>
+        <script type="text/javascript" src="scripts/jquery.min.js"></script>
+        <script type="text/javascript" src="scripts/libs/rivets/rivets.js"></script>
+        <script type="text/javascript" src="scripts/libs/underscore/underscore.js"></script>
+        <script type="text/javascript" src="scripts/libs/backbone/backbone.js"></script>
+        <script type="text/javascript" src="scripts/rivets-backbone.js"></script>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div id="stats">
+                <div class="statItem">
+                    <label for="totalDuration">Durée totale</label> : <span data-text="timingModel.globalTime | toHHMMSS" id="totalDuration"></span><br/>
+                    <label for="plannedDuration">Durée prév</label> : <span data-text="timingModel:plannedSummedDuration < .plannedDuration .slideCountdown | toHHMMSS" id="plannedDuration"></span><br/>
+                </div>
+                <div class="statItem">
+                    <label for="totalOverflow">Dépassement</label> : <span data-class="timingModel:globalOverflowClass < .globalOverflow .slideCountdown" data-text="timingModel:globalSummedOverflow < .globalOverflow .slideCountdown | toHHMMSS" class="bad" id="totalOverflow"></span><br/>
+                    <label for="remainingTime">RAF</label> : <span data-text="timingModel:remainingTime < .slidesRemainingBaseTime .slideCountdown | toHHMMSS" id="remainingTime"></span>
+                </div>
+                <div class="statItem">
+                    <label for="slideCountdown">Timing slide</label> : <span data-class="timingModel:slideCountdownClass < .slideCountdown" data-text="timingModel.slideCountdown | toHHMMSS" id="slideCountdown"></span><br/>
+                    <label for="plannedEndTime">Fin prévisionnelle</label> : <span data-text="timingModel:plannedEndTime < .slidesRemainingBaseTime .slideCountdown .latestTick | dateToHHMMSS" id="plannedEndTime"></span>
+                </div>
+                <button class="nextSlide">Next</button>
+                <button style="margin: auto" data-text="timingModel:pauseResumeLabel < .resumeTS" class="pauseResume"></button>
+                <hr style="clear: both"/>
+                <ol data-each-timing="timings.models" id="timings">
+                    <li><span data-text="timing.duration | toHHMMSS"></span> (<span data-class="timing:deltaClass < .slideCountdown" data-text="timing.slideCountdown | toHHMMSS"></span>)</li>
+                </ol>
+                <hr style="clear: both"/>
+            </div>
+            <div id="content">
+                <div class="slide visible" data-estimatedDuration="03:00">
+                    <div>
+                        <h1>Amorce</h1>
+                        <ul>
+                            <li><strong>Plus d'un an</strong> que je fais du Typescript au quotidien</li>
+                            <li><strong>Partager mon expérience</strong> sur la mise en place de TS sur un projet existant.</li>
+                            <li><strong>REX</strong> projet 4SH > 6 mois : ça se passe bien et cela apporte énormément de "<strong>meta-information</strong>" / doc sur le front.</li>
+                        </ul>
+
+                        <h1>3 Parties</h1>
+                        <ol>
+                            <li>Mise en place de Typescript sur projet existant</li>
+                            <li>Minimum vital à connaître pour faciliter votre progression</li>
+                            <li>Migration d'une première classe JS en TS</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="slide" data-estimatedDuration="7:30">
+                    <div class="col">
+                        <h1>Setup</h1>
+                        <ul>
+                            <li>npm install --save-dev typescript</li>
+			                <li>Création <strong>tsconfig</strong> + explication <strong>allowJS/outFile</strong></li>
+                            <li>Explication <strong>process de compilation</strong></li>
+                            <li><strong>Remplacement dans le index.html</strong> & run</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h1>Tricks</h1>
+                        <ul>
+                            <li>Live template "<strong>TSConfig</strong>" ou "tsconfigcontent"</li>
+                            <li>Paramétrage d'Intellij pour compilation TS</li>
+                            <li><strong>SourceMaps</strong> dans le browser</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="slide" data-estimatedDuration="16:00">
+                    <div class="col">
+                        <h1>Sandbox</h1>
+                        <ul>
+                            <li>Création <strong>fichier Sandbox.ts</strong></li>
+                            <li>Rapide prez des <strong>Classes</strong></li>
+                            <li>Code généré</li>
+                            <li>Rapide prez des <strong>Interfaces</strong></li>
+                            <li>Code non généré</li>
+                            <li><strong>Typage structurel</strong></li>
+                            <li><strong>Imports/Exports</strong></li>
+                            <li>Code généré + <strong>rajout requirejs</strong> à la fin</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h1>Tricks</h1>
+                        <ul>
+                            <li>Live template "<strong>tshello</strong>"</li>
+                            <li><strong>"Espaces" de déclaration</strong> : variables et types. Parallèle avec Classes & interfaces.</li>
+                            <li>instanceof d'une classe / interface</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="slide" data-estimatedDuration="10:00">
+                    <div class="col">
+                        <h1>Interop</h1>
+                        <ul>
+                            <li>Renommage WorkshopLogger.js => <strong>ts</strong>. Migrer les feuilles dans l'arbre de dépendances.</li>
+                            <li>Présentation du <strong>declare var de type any</strong> (workaround rapide)</li>
+                            <li>Présentation <strong>fichiers .d.ts & @types</strong></li>
+                            <li><strong>Installation</strong> @types : npm install --save @types/lodash@3.10.1 @types/handlebars@4.0.29 @types/angular@1.5.8</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h1>Tricks</h1>
+                        <ul>
+                            <li>Rechercher un @type : <strong>http://aka.ms/types</strong></li>
+                            <li>Lister les versions d'un d.ts : <strong>npm show @types/handlebars</strong></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="slide" data-estimatedDuration="15:00">
+                    <div class="col">
+                        <h1>Fin refacto Logger</h1>
+                        <ul>
+                            <li>Classe avec <strong>méthodes public static</strong></li>
+                            <li><strong>Interfaces</strong> LogEventCallbackStd|UserParam</li>
+                            <li>Type LogEvent qui ressemble a un <strong>enum</strong></li>
+                            <li><strong>LogEventObserver</strong> qui est un object literal</li>
+                            <li><strong>Externalisation</strong> de la classe Logger pour faciliter son export futur</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h1>Tricks</h1>
+                        <ul>
+                            <li>Petit focus sur les enums qui sont vraiment pourris en TS</li>
+                            <li><strong>let</strong> est mieux que var</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="slide" data-estimatedDuration="1:30">
+                    <div class="col">
+                        <h1>La fin</h1>
+                        <ul>
+                            <li>Parler du google group Typescript-</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h1>Tricks</h1>
+                        <ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr style="clear:both"/>
+            <button style="margin: auto" class="nextSlide">Next</button>
+            <button style="margin: auto" data-text="timingModel:pauseResumeLabel < .resumeTS" class="pauseResume"></button>
+        </div>
+        <script type="text/javascript" src="TimingManager.js"></script>
+        <script type="text/javascript">
+            $(document).ready(bootstrapTimings);
+        </script>
+    </body>
+</html>
